@@ -1,13 +1,46 @@
-<div>
-  <h3>News Feed</h3>
-  <div>
-    Username: <input type="text" ng-model="temps.name">
-    News: <textarea ng-model="temps.newsText"></textarea>
-    <input type="submit" ng-click="addNews()">
-  </div>
-  <div>
-    <div ng-repeat="news in newslist track by $index">
-      {{news.name}} {{news.text}}
+<div class="row">
+  <div class="large-12 columns newsfeed">
+    <div class="panel">
+      <h1>News Feed</h1>
     </div>
   </div>
 </div>
+
+  <div class="row collapse">
+    <div class="large-2 columns">
+      <label class="inline">Username</label>
+    </div>
+    <div class="large-10 columns">
+      <input type="text" id="yourName" placeholder="Steve Jobs" ng-model="temps.name">
+    </div>
+  </div>
+
+  <label>What's up?</label>
+  <textarea rows="4" placeholder="Got some news to share chap?"  ng-model="temps.newsText"></textarea>
+  <button type="submit" class="radius button" ng-click="addNews()">Submit</button>
+   
+  <div class="row">
+    <div class="large-12 columns">
+      
+
+      <div class="row"  ng-repeat="(newsID, news) in newslist track by $index">
+        <div class="large-10 columns">
+          <p><strong>{{news.username}} posted:</strong>{{news.feed}}</p>
+          <ul class="inline-list">
+            <li><a href="">Like</a></li>
+          </ul>
+
+          <div class="row">
+            <div class="large-10 columns" ng-repeat="comments in news.comments"><p>{{comments.comment}}</p></div>
+            <div class="large-8 columns">
+              <input type="text" id="yourName" placeholder="Write your comments here" ng-model="news.comments.comment">
+              <button type="submit" class="radius button" ng-click="addComment(news, newsID)">Submit</button>
+            </div>
+          </div>
+        </div>
+        <hr/>
+      </div>
+
+
+    </div> 
+  </div>

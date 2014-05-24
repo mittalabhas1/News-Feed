@@ -69,7 +69,8 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 960px;
+        margin: auto;
     }
 
     /* Remove the padding we set earlier */
@@ -87,4 +88,9 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+.newsfeed{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
