@@ -1,0 +1,13 @@
+<div>
+  <h3>News Feed</h3>
+  <div>
+    Username: <input type="text" ng-model="temps.name">
+    News: <textarea ng-model="temps.newsText"></textarea>
+    <input type="submit" ng-click="addNews()">
+  </div>
+  <div>
+    <div ng-repeat="news in newslist track by $index">
+      {{news.name}} {{news.text}}
+    </div>
+  </div>
+</div>
