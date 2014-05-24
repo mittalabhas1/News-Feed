@@ -22,20 +22,32 @@
   <div class="row">
     <div class="large-12 columns">
       
-
-      <div class="row"  ng-repeat="(newsID, news) in newslist track by $index">
-        <div class="large-10 columns">
-          <p><strong>{{news.username}} posted:</strong>{{news.feed}}</p>
+      <div class="row"  ng-repeat="(newsId, news) in newslist track by $index">
+        <div class="large-12 columns">
+          <p><strong>{{news.username}} posted:</strong> {{news.feed}}</p>
           <ul class="inline-list">
-            <li><a href="">Like</a></li>
+            <li><a ng-click="likePost(news, newsId)">Like<span ng-if="news.likes.length > 1">s</span><span ng-if="news.likes.length > 0"> ({{news.likes.length}})</span></a></li>
+            <li><a ng-click="toogleComments(news)">Comment</a></li>
           </ul>
 
-          <div class="row">
-            <div class="large-10 columns" ng-repeat="comments in news.comments"><p>{{comments.comment}}</p></div>
-            <div class="large-8 columns">
-              <input type="text" id="yourName" placeholder="Write your comments here" ng-model="news.comments.comment">
-              <button type="submit" class="radius button" ng-click="addComment(news, newsID)">Submit</button>
+          <div class="row" ng-if="news.showComments">
+
+            <div class="large-12 columns">
+                <div class="row collapse">
+                  <div class="small-10 columns">
+                    <input type="text" placeholder="Write your comments here" ng-model="news.newComment">
+                  </div>
+                  <div class="small-2 columns">
+                    <a href="#" class="button postfix" ng-click="addComment(news, newsId)">Comment</a>
+                  </div>
+                </div>
+              </div>
+            
+            <div class="large-12 columns" ng-repeat="comments in news.comments">
+              <hr />
+              <p><strong>{{comments.username}}:</strong> {{comments.comment}}</p>
             </div>
+
           </div>
         </div>
         <hr/>
